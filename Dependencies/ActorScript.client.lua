@@ -1,4 +1,3 @@
-print('--// ROBLOX //--')
 -- // Types \\ --
 
 type dictionary = { [string]: any }
@@ -59,7 +58,7 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 	local SBone = SmartBone.new(Object, RootList)
 
 	local frameTime = 0
-	Connection = RunService.Heartbeat:Connect(function(Delta: number)
+	Connection = RunService.RenderStepped:Connect(function(Delta: number)
 		Delta = smoothDelta()
 		frameTime += Delta
 
