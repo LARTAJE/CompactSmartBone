@@ -1,12 +1,4 @@
-print('--// RAN ACTOR SCRIPT //--')
-
-
-
-
-
-
-
-
+print('--// ROBLOX //--')
 -- // Types \\ --
 
 type dictionary = { [string]: any }
@@ -98,8 +90,6 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 
 				debug.profileend()
 
-				task.synchronize()
-
 				debug.profilebegin("SoftBoneTransform")
 
 				for _, _ParticleTree in SBone.ParticleTrees do
@@ -110,9 +100,6 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 				end
 
 				debug.profileend()
-
-				task.desynchronize()
-
 			else
 				if SBone.InRange == true then
 					SBone.InRange = false
@@ -121,13 +108,9 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 						SBone:ResetParticles(_ParticleTree)
 					end
 
-					task.synchronize()
-
 					for _, _ParticleTree in SBone.ParticleTrees do
 						SBone:ResetTransforms(_ParticleTree, Delta)
 					end
-
-					task.desynchronize()
 				end
 			end
 		end
