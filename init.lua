@@ -556,22 +556,15 @@ function module.Start()
 				Event.Name = "Event"
 				Event.Parent = SmartBoneActor
 				
-				local RuntimeScript = Instance.new('LocalScript')
-				RuntimeScript.Enabled = false
-				RuntimeScript.Name = "Runtime"
-				RuntimeScript.Source = Require(mrp..'/Dependencies/ActorScript.client.lua')
-				RuntimeScript.Parent = SmartBoneActor
-
 				SmartBoneActor.Parent = ActorsFolder
+				local ActorModule =  Require(mrp..'/Dependencies/ActorScript.client.lua')
 
-				RuntimeScript.Enabled = true
-
-				SmartBones[Object] = SmartBoneActor.Event:Invoke(Object, RootList)
+				SmartBones[Object] = ActorModule.Initialize(Object, RootList)
 
 				SmartBoneActor.Name = Object.Name .. SmartBones[Object].ID
 
 				SmartBones[Object].RemovedEvent.Event:Once(function()
-					SmartBoneActor.Runtime.Enabled = false
+					ActorModule.Stop()
 					SmartBoneActor:Destroy()
 				end)
 
