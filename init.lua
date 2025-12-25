@@ -562,7 +562,7 @@ function module.Start()
 	local function removeSmartBoneObject(Object: BasePart)
 		if SmartBones[Object] then
 			DebugPrint("Removing SmartBone Object with ID: " .. SmartBones[Object].ID)
-			print(`REMOVING INSTANCE 1`, Object)
+			print(`REMOVING INSTANCE 2`, Object)
 			task.spawn(function()
 				for _, Connection in pairs(SmartBones[Object].Connections) do
 					Connection:Disconnect()
@@ -580,20 +580,18 @@ function module.Start()
 				
 				SmartBones[Object].RemovedEvent:Fire()
 				SmartBones[Object].RemovedEvent:Destroy()
-
-				SmartBones[Object] = nil
-
+				
 				task.wait()
 				
-
-				for _, particleTree: particleTree in ipairs(SmartBones[Object].ParticleTrees) do
+				for _, particleTree: particleTree in SmartBones[Object].ParticleTrees do
 					for _, _Particle in particleTree.Particles do
 						for _, Recycling in _Particle.RecyclingBin do
 							Recycling:Destroy()
 						end
 					end
 				end
-				
+
+				SmartBones[Object] = nil
 			end)
 		end
 	end
