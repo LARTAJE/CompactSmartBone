@@ -1,3 +1,5 @@
+print(`INIT`)
+
 -- // Types \\ --
 
 type dictionary = { [string]: any }
