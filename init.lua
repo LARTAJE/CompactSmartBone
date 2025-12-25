@@ -511,6 +511,7 @@ function module:UpdateBones(Delta: number, UpdateRate: number)
 end
 
 function module.Start()
+	print('--// STARTED COMPACT SMART BONE //--')
 	local Player = game.Players.LocalPlayer
 
 	local ActorsFolder = Instance.new("Folder")
