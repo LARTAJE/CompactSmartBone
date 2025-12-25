@@ -1,8 +1,6 @@
 --[[ SmartBone Version 0.1.2 by Celnak ]] --
 
 -- // Types \\ --
-print('--// COMPACT SMART BONE INIT //--')
-
 type func = () -> ()
 type dictionary = { [string]: any }
 type array = { [number]: any }
