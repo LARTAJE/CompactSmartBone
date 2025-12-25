@@ -92,7 +92,7 @@ local SmartBoneTags = CollectionService:GetTagged("SmartBone")
 
 -- // Debug \\ --
 
-local DEBUG = true
+local DEBUG = false
 local DEBUG_FOLDER, DEBUG_HIGHLIGHT
 
 -- // Module \\ --
