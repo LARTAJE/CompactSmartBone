@@ -153,12 +153,12 @@ function module:Init()
 
 	CurrentControllers[self.ID] = self
 
-	self.Connections["AttributeChanged"] = RootPart.AttributeChanged:ConnectParallel(function(Attribute: string)
+	self.Connections["AttributeChanged"] = RootPart.AttributeChanged:Connect(function(Attribute: string)
 		if not self.Settings[Attribute] then return end
 		self:UpdateParameters(Attribute, RootPart:GetAttribute(Attribute))
 	end)
 
-	self.Connections["LightingAttributeChanged"] = Lighting.AttributeChanged:ConnectParallel(function(Attribute: string)
+	self.Connections["LightingAttributeChanged"] = Lighting.AttributeChanged:Connect(function(Attribute: string)
 		if not self.Settings[Attribute] then return end
 		self:UpdateParameters(Attribute, Lighting:GetAttribute(Attribute))
 	end)
