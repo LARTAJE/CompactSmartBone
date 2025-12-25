@@ -1,3 +1,4 @@
+print('--// ROBLOX //--')
 -- // Types \\ --
 
 type dictionary = { [string]: any }
