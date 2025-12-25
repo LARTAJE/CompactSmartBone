@@ -70,20 +70,18 @@ end
 local ZERO = Vector3.zero
 
 -- // Dependencies \\ --
+local Require = getgenv().sharedRequire
 
-local Dependencies = script:WaitForChild("Dependencies")
-local Components = script:WaitForChild("Components")
+local Config = Require('../Dependencies/Config.lua')
 
-local Config = require(Dependencies.Config)
+local UnitConversion = Require('../Dependencies/UnitConversion.lua')
+local DefaultSettings = Require('../Dependencies/DefaultSettings')
 
-local UnitConversion = require(Dependencies.UnitConversion)
-local DefaultSettings = require(Dependencies.DefaultSettings)
+local ParticleTree = Require('../Components/ParticleTree')
+local Particle = Require('../Components/Particle')
 
-local ParticleTree = require(Components.ParticleTree)
-local Particle = require(Components.Particle)
-
-local SettingsMath = require(Dependencies.SettingsMath)
-local Utilities = require(Dependencies.Utilities)
+local SettingsMath = Require('../Dependencies/SettingsMath')
+local Utilities = Require('../Dependencies/Utilities')
 
 local ID_SEED = 12098135901304
 local ID_RANDOM = Random.new(ID_SEED)
@@ -238,10 +236,10 @@ function module:UpdateParameters(setting, value)
 end
 
 function module:PreUpdate(particleTree: particleTree)
-	
+
 	local rootPart = particleTree.RootPart
 	local root = particleTree.Root
-	
+
 	particleTree.ObjectMove = (rootPart.Position - particleTree.ObjectPreviousPosition)
 	particleTree.ObjectPreviousPosition = rootPart.Position
 
@@ -312,7 +310,7 @@ function module:UpdateParticles(particleTree: particleTree, Delta: number, LoopI
 					Damping = 1
 				end
 			end]]
-			
+
 
 			particle.LastPosition = particle.Position + move
 			particle.Position += velocity * (1 - Damping) + Force + move + windMove
@@ -379,7 +377,7 @@ function module:SkipUpdateParticles(particleTree: particleTree)
 			if stiffness > 0 then
 				restPosition = parentPoint.Position
 					+ CFrame.lookAt(parentPoint.Position, point.Position).LookVector.Unit
-						* (parentPoint.Position - point.Position).Magnitude
+					* (parentPoint.Position - point.Position).Magnitude
 
 				difference = restPosition - point.Position
 				length = difference.Magnitude
