@@ -1,5 +1,5 @@
 
-print('HASDHasid')
+print('eita coisa')
 -- // Types \\ --
 
 type dictionary = { [string]: any }
