@@ -77,6 +77,7 @@ local mrp = 'https://raw.githubusercontent.com/LARTAJE/CompactSmartBone/refs/hea
 local Config = Require(mrp..'/Dependencies/Config.lua')
 
 local UnitConversion = Require(mrp..'/Dependencies/UnitConversion.lua')
+print('hot')
 local DefaultSettings = Require(mrp..'/Dependencies/DefaultSettings.lua')
 
 local ParticleTree = Require(mrp..'/Components/ParticleTree.lua')
