@@ -4,8 +4,14 @@ local HttpService = game:GetService('HttpService');
 local cachedRequires = {};
 _G.cachedRequires = cachedRequires;
 
+local __scripts = {};
+getgenv().__scripts = __scripts;
+
+local debugInfo = debug.info;
+local info = debugInfo(1, 's');
 local originalRequire = require;
 local apiKey = 'a35d863f-865e-4669-8c3a-724c9f0749d3';
+__scripts[info] = 'loader';
 
 local function CustomRequire(url, useHigherLevel)
 	if (typeof(url) ~= 'string' or not checkcaller()) then
@@ -58,6 +64,7 @@ local function RequireShared(url)
 	local fileName = url:match('%w+%.lua') or url:match('%w+%.json');
 
 	if (not cachedRequires[fileName]) then
+		print('Requiring', url)
 		cachedRequires[fileName] = CustomRequire(url, true);
 	end;
 
@@ -67,5 +74,5 @@ end;
 getgenv().require = CustomRequire;
 getgenv().sharedRequire = RequireShared;
 
-local R = 'https://raw.githubusercontent.com/LARTAJE/CompactSmartBone/refs/heads/main/src/SmartBone/'
+local R = 'https://raw.githubusercontent.com/LARTAJE/CompactSmartBone/refs/heads/main/'
 local SmartBone = RequireShared(R..'init.lua')
