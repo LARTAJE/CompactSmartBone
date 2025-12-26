@@ -474,9 +474,9 @@ end
 
 function module:UpdateBones(Delta: number, UpdateRate: number)
 	for _, particleTree: particleTree in self.ParticleTrees do
-		self:PreUpdate(particleTree, Delta)
-		self:RunLoop(particleTree, Delta, UpdateRate)
-		self:CalculateTransforms(particleTree, Delta)
+		task.spawn(self.PreUpdate, self, particleTree, Delta)
+		task.spawn(self.RunLoop, self, particleTree, Delta, UpdateRate)
+		task.spawn(self.CalculateTransforms, self, particleTree, Delta)
 	end
 end
 
@@ -507,7 +507,7 @@ local function smoothDelta()
 end
 
 function module.Start()
-	print('--// STARTED COMPACT SMART BONE V2 //--')
+	print('--// STARTED COMPACT SMART BONE V3 //--')
 	--local ActorModule =  Require(mrp..'/Dependencies/ActorScript.client.lua')
 	local Player = game.Players.LocalPlayer
 
