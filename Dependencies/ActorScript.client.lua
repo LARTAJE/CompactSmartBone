@@ -61,6 +61,7 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 	SBone.SimulationConnection = RunService.Heartbeat:Connect(function(Delta: number)
 		Delta = smoothDelta()
 		frameTime += Delta
+		print('z')
 
 		local camPosition = workspace.CurrentCamera.CFrame.Position
 		local rootPosition = SBone.RootPart.Position
