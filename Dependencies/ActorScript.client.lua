@@ -1,5 +1,3 @@
-print(`INIT`)
-
 -- // Types \\ --
 
 type dictionary = { [string]: any }
@@ -60,7 +58,7 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 	local SBone = SmartBone.new(Object, RootList)
 
 	local frameTime = 0
-	Connection = RunService.PostSimulation:Connect(function(Delta: number)
+	SBone.SimulationConnection = RunService.Heartbeat:Connect(function(Delta: number)
 		Delta = smoothDelta()
 		frameTime += Delta
 
@@ -74,9 +72,7 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 		local updateThrottle = 1 - math.clamp(updateDistance / activationDistance, 0, 1)
 
 		local UpdateRate = math.floor(math.clamp(updateThrottle * SBone.Settings.UpdateRate, 1, SBone.Settings.UpdateRate))
-		
-		print(UpdateRate, distance)
-		
+
 		local WithinViewport = CameraUtil.WithinViewport(SBone.RootPart)
 		if frameTime >= (1/UpdateRate) then
 			if distance < activationDistance and WithinViewport then
@@ -118,10 +114,6 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 			end
 		end
 	end)
-	SBone.SimulationConnection = Connection
 	return SBone
-end
-function ActorModule.Stop()
-	Connection:Disconnect()
 end
 return ActorModule
