@@ -1,7 +1,7 @@
 --[[ SmartBone Version 0.1.2 by Celnak ]] --
 
 -- // Types \\ --
-print('--// COMPACT SMART BONE INIT //--')
+print('--// COMPACT SMART BONE V2 INIT //--')
 
 type func = () -> ()
 type dictionary = { [string]: any }
