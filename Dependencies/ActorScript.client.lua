@@ -61,7 +61,6 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 	SBone.SimulationConnection = RunService.Heartbeat:Connect(function(Delta: number)
 		Delta = smoothDelta()
 		frameTime += Delta
-		print('z')
 
 		local camPosition = workspace.CurrentCamera.CFrame.Position
 		local rootPosition = SBone.RootPart.Position
@@ -79,27 +78,16 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 			if distance < activationDistance and WithinViewport then
 				Delta = frameTime
 				frameTime = 0
-
-				debug.profilebegin("SoftBone")
-
 				if SBone.InRange == false then
 					SBone.InRange = true
 				end
-
 				SBone:UpdateBones(Delta, UpdateRate)
-
-				debug.profileend()
-
-				debug.profilebegin("SoftBoneTransform")
-
 				for _, _ParticleTree in SBone.ParticleTrees do
 					SBone:TransformBones(_ParticleTree, Delta)
 					if DEBUG then
 						SBone:DEBUG(_ParticleTree, Delta)
 					end
 				end
-
-				debug.profileend()
 			else
 				if SBone.InRange == true then
 					SBone.InRange = false
