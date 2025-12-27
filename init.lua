@@ -542,7 +542,7 @@ function module.Start()
 				
 				local frameTime = 0
 				local SBone = SmartBones[Object]
-				SBone.SimulationConnection = RunService.Heartbeat:Connect(function(Delta: number)
+				SBone.SimulationConnection = RunService.RenderStepped:Connect(function(Delta: number)
 					frameTime += Delta
 
 					local camPosition = workspace.CurrentCamera.CFrame.Position
